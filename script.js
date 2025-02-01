@@ -27,15 +27,19 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteBtn.textContent = "Delete";
         deleteBtn.classList.add("delete-btn");
 
+        // Confirmation before deleting a todo
+        deleteBtn.addEventListener("click", function () {
+            const confirmDelete = confirm("Are you sure you want to delete this todo?");
+            if (confirmDelete) {
+                todoList.removeChild(li);
+            }
+        });
+
         editBtn.addEventListener("click", function () {
             const newText = prompt("Edit your todo:", span.textContent);
             if (newText !== null && newText.trim() !== "") {
                 span.textContent = newText.trim();
             }
-        });
-
-        deleteBtn.addEventListener("click", function () {
-            todoList.removeChild(li);
         });
 
         li.appendChild(span);
